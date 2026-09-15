@@ -4,7 +4,7 @@
 
 ## Thông tin bài nộp
 
-- Tên nhóm:
+- Tên nhóm: 
 - Người đại diện / MSSV:
 - Tên repo: `K4-L3-DAY04-HoVaTen-MSSV-PromptEngineeringToolCalling`
 - URL repo, nhánh nộp, commit chốt:

@@ -8,17 +8,17 @@
 tools:
   # ---------------- Core tools ----------------
   - name: clarify
-    description: "Gửi một câu hỏi cho người dùng."
+    description: "Hỏi lại người dùng để thu thập thông tin còn thiếu (như thiếu asset_id, employee_id, hoặc môi trường không rõ ràng) hoặc yêu cầu xác nhận trước khi thực hiện hành động ghi dữ liệu (tạo ticket)."
     parameters:
       type: object
       properties:
-        question: {type: string, default: "", description: "Câu hỏi"}
+        question: {type: string, default: "", description: "Câu hỏi làm rõ hoặc câu hỏi xác nhận"}
         response_type: {type: string, enum: [text, yes_no, choice], default: "text", description: "Kiểu trả lời"}
-        options: {type: array, default: [], items: {type: string}, description: "Các lựa chọn"}
+        options: {type: array, default: [], items: {type: string}, description: "Các lựa chọn nếu có"}
       required: [question]
 
   - name: search_kb
-    description: "Tìm hướng dẫn hỗ trợ kỹ thuật."
+    description: "Tìm kiếm hướng dẫn kỹ thuật (how-to), quy trình cài đặt, cấu hình và xử lý sự cố thiết bị hoặc phần mềm. Không dùng cho chính sách hay quy định công ty."
     parameters:
       type: object
       properties:
@@ -28,25 +28,25 @@ tools:
       required: [query]
 
   - name: check_service_status
-    description: "Kiểm tra trạng thái một dịch vụ."
+    description: "Kiểm tra trạng thái hoạt động của các dịch vụ hệ thống dùng chung (vpn, email, sso, wifi, printing) trên môi trường production hoặc staging. Không dùng cho thiết bị máy trạm cá nhân."
     parameters:
       type: object
       properties:
         service: {type: string, enum: [vpn, email, sso, wifi, printing], description: "Tên dịch vụ"}
-        environment: {type: string, enum: [production, staging], default: "production", description: "Môi trường"}
+        environment: {type: string, enum: [production, staging], default: "production", description: "Môi trường hệ thống"}
       required: [service]
 
   - name: inspect_device
-    description: "Kiểm tra thông tin và chẩn đoán thiết bị."
+    description: "Kiểm tra thông tin kỹ thuật và chẩn đoán tình trạng của một thiết bị cụ thể theo mã tài sản (asset_id như LT-xxx, PC-xxx). Dùng tham số check cụ thể (vpn, network, security, hardware, software) hoặc all."
     parameters:
       type: object
       properties:
-        asset_id: {type: string, description: "Mã tài sản"}
-        check: {type: string, enum: [all, network, vpn, security, hardware, software], default: "all", description: "Nhóm kiểm tra"}
+        asset_id: {type: string, description: "Mã tài sản thiết bị"}
+        check: {type: string, enum: [all, network, vpn, security, hardware, software], default: "all", description: "Khía cạnh kỹ thuật cần kiểm tra"}
       required: [asset_id]
 
   - name: lookup_user
-    description: "Tra cứu người dùng trong danh bạ hỗ trợ."
+    description: "Tra cứu thông tin nhân viên, tài khoản và danh sách thiết bị được cấp theo mã nhân viên trong danh bạ nội bộ. Không gọi inspect_device trừ khi có yêu cầu kiểm tra kỹ thuật thiết bị cụ thể."
     parameters:
       type: object
       properties:
@@ -54,7 +54,7 @@ tools:
       required: [employee_id]
 
   - name: format_incident_report
-    description: "Trình bày các kết quả đã có thành báo cáo."
+    description: "Định dạng và tổng hợp các phát hiện/chẩn đoán sự cố thành báo cáo sự cố kỹ thuật. Gọi tool này khi người dùng yêu cầu trình bày hoặc tạo báo cáo sự cố."
     parameters:
       type: object
       properties:
@@ -86,7 +86,7 @@ tools:
       required: [manufacturer, model, query_type]
 
   - name: policy
-    description: "Tìm trong chính sách IT nội bộ."
+    description: "Tìm trong chính sách IT nội bộ, quy định bảo mật, quy chế sử dụng tài sản và quy trình phê duyệt của công ty."
     parameters:
       type: object
       properties:
@@ -96,7 +96,7 @@ tools:
       required: [query]
 
   - name: create_ticket
-    description: "Tạo một ticket hỗ trợ."
+    description: "Tạo một ticket hỗ trợ kỹ thuật trong hệ thống. CHỈ ĐƯỢC GỌI khi người dùng đã xem lại thông tin và xác nhận rõ ràng (confirmed=True)."
     parameters:
       type: object
       properties:

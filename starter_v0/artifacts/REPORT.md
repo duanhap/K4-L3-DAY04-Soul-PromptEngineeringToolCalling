@@ -1,6 +1,6 @@
 # Day 04 Lab v3 Report — Trợ lý AI của nhóm
 
-- Lĩnh vực tự chọn:
+- Lĩnh vực tự chọn: IT Service Desk Agent
 - Nhiệm vụ và luồng cơ bản đã chốt trước v0:
 - Đường dẫn bộ 30 câu cơ bản và 12 câu an toàn; commit chốt bộ trước v0:
 - Chức năng mở rộng ngoài luồng cơ bản (nếu có; tối đa 10 trong tổng 100 điểm):
@@ -50,8 +50,8 @@ total_cases`, và tool result error đã được review thủ công.
 
 | Version | Prompt/tool change | Hypothesis | Metric | Before | After | Run file |
 |---|---|---|---|---:|---:|---|
-| v0 | baseline |  |  |  |  |  |
-| v1 |  |  |  |  |  |  |
+| v0 | baseline | Đo đạc hành vi ban đầu trước khi sửa | case_accuracy | - | 0.70 | runs/v0_B_base_openai_20260915T190326859201.json |
+| v1 | Thêm Routing Guidelines vào system_prompt.md; tối ưu description công cụ trong tools.yaml | Làm rõ ranh giới các công cụ để giảm lỗi wrong_tool | case_accuracy | 0.70 | 0.8667 | runs/v1_B_base_openai_20260915T192043682003.json |
 | v2 |  |  |  |  |  |  |
 | v3 |  |  |  |  |  |  |
 
@@ -59,7 +59,10 @@ total_cases`, và tool result error đã được review thủ công.
 
 | Case ID | Failure type | Actual calls | What failed | Fix |
 |---|---|---|---|---|
-|  |  |  |  |  |
+| H04_user_routing | wrong_tool | lookup_user, inspect_device | Model gọi thừa inspect_device khi tra cứu tài khoản và thiết bị cấp phát | Cập nhật description lookup_user nêu rõ danh bạ đã gồm thiết bị được cấp, không tự ý gọi inspect_device |
+| H13_parallel_status_and_device | wrong_tool | check_service_status, inspect_device | Tham số check của inspect_device bị truyền None thay vì 'vpn' | Bổ sung quy tắc truyền tham số check cụ thể vào system_prompt.md |
+| H17_triage_with_three_sources | wrong_tool | inspect_device, check_service_status, search_kb | Tham số check của inspect_device bị truyền 'all' thay vì 'vpn' | Làm rõ hướng dẫn chọn đúng loại check tương ứng với khía cạnh người dùng hỏi |
+| H10_missing_asset | missing_info | clarify | Ở v0 gọi inspect_device khi không có asset_id; ở v1 đã chuyển sang clarify thành công | Bổ sung quy tắc gọi clarify khi thiếu mã máy vào system_prompt.md |
 
 ## B3. Team eval cases
 
