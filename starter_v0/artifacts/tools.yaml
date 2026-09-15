@@ -8,14 +8,14 @@
 tools:
   # ---------------- Core tools ----------------
   - name: clarify
-    description: "Hỏi lại người dùng để thu thập thông tin còn thiếu (như thiếu asset_id, employee_id, hoặc môi trường không rõ ràng) hoặc yêu cầu xác nhận trước khi thực hiện hành động ghi dữ liệu (tạo ticket)."
+    description: "Hỏi lại người dùng để thu thập thông tin còn thiếu (như thiếu asset_id, employee_id, hoặc môi trường không rõ ràng) hoặc yêu cầu xác nhận trước khi thực hiện hành động ghi dữ liệu (tạo ticket). Bắt buộc chỉ định response_type: 'text' (hỏi ID/text tự do), 'yes_no' (hỏi xác nhận ticket), hoặc 'choice' (kèm options cụ thể)."
     parameters:
       type: object
       properties:
         question: {type: string, default: "", description: "Câu hỏi làm rõ hoặc câu hỏi xác nhận"}
-        response_type: {type: string, enum: [text, yes_no, choice], default: "text", description: "Kiểu trả lời"}
-        options: {type: array, default: [], items: {type: string}, description: "Các lựa chọn nếu có"}
-      required: [question]
+        response_type: {type: string, enum: [text, yes_no, choice], default: "text", description: "Kiểu trả lời: 'text' khi hỏi bổ sung ID/text; 'yes_no' khi hỏi xác nhận tạo ticket; 'choice' khi chọn danh sách"}
+        options: {type: array, default: [], items: {type: string}, description: "Các lựa chọn nếu có, ví dụ ['production', 'staging'] khi response_type là 'choice'"}
+      required: [question, response_type]
 
   - name: search_kb
     description: "Tìm kiếm hướng dẫn kỹ thuật (how-to), quy trình cài đặt, cấu hình và xử lý sự cố thiết bị hoặc phần mềm. Không dùng cho chính sách hay quy định công ty."
@@ -96,7 +96,7 @@ tools:
       required: [query]
 
   - name: create_ticket
-    description: "Tạo một ticket hỗ trợ kỹ thuật trong hệ thống. CHỈ ĐƯỢC GỌI khi người dùng đã xem lại thông tin và xác nhận rõ ràng (confirmed=True)."
+    description: "Tạo một ticket hỗ trợ kỹ thuật trong hệ thống. CHÚ Ý: Đây là hành động ghi dữ liệu (write action). Tuyệt đối KHÔNG tự ý gọi tool này ngay khi người dùng mới yêu cầu tạo ticket. Phải luôn dùng tool clarify(response_type='yes_no') để hỏi xác nhận trước. Chỉ gọi create_ticket khi người dùng đã có phản hồi xác nhận rõ ràng."
     parameters:
       type: object
       properties:
