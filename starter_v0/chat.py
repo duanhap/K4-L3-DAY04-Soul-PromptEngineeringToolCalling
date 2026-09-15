@@ -92,7 +92,7 @@ def run_model_tool_loop(
 
     for round_index in range(1, max_tool_rounds + 1):
         response = provider.complete(working_messages, tools, model=model, temperature=0.0)
-        calls = guard_tool_calls(response.tool_calls)
+        calls = guard_tool_calls(response.tool_calls, working_messages)
         round_record: dict[str, Any] = {
             "round": round_index,
             "assistant_text": response.text,
