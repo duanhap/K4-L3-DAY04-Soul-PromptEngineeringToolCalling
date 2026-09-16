@@ -7,7 +7,7 @@
 - Tên nhóm: Soul
 - Người đại diện / MSSV: Nguyễn Công Duẩn / 2A202602716
 - Tên repo: `K4-L3-DAY04-Soul-PromptEngineeringToolCalling`
-- URL repo, nhánh nộp, commit chốt: https://github.com/duanhap/K4-L3-DAY04-Soul-PromptEngineeringToolCalling.git , main , commit - 270ae8d
+- URL repo, nhánh nộp, commit chốt: https://github.com/duanhap/K4-L3-DAY04-Soul-PromptEngineeringToolCalling.git , main , commit - 7b34605
 - Deadline áp dụng và link thông báo đổi hạn nếu có: 23:59 16/9/2026
 
 ## Thành viên
