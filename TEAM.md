@@ -7,14 +7,14 @@
 - Tên nhóm: Soul
 - Người đại diện / MSSV: Nguyễn Công Duẩn / 2A202602716
 - Tên repo: `K4-L3-DAY04-Soul-PromptEngineeringToolCalling`
-- URL repo, nhánh nộp, commit chốt: https://github.com/duanhap/K4-L3-DAY04-Soul-PromptEngineeringToolCalling.git , main , ????
+- URL repo, nhánh nộp, commit chốt: https://github.com/duanhap/K4-L3-DAY04-Soul-PromptEngineeringToolCalling.git , main , commit - 270ae8d
 - Deadline áp dụng và link thông báo đổi hạn nếu có: 23:59 16/9/2026
 
 ## Thành viên
 
 | Họ và tên | MSSV | GitHub | Vai trò và công việc | File/commit/PR |
 |---|---|---|---|---|
-| Nguyễn Công Duẩn | [2A202602716] | duanhap | Trưởng nhóm; tạo repo, phân công công việc, chốt workflow, kiểm tra v0-v3, tổng hợp report và final signoff | repo chung, TEAM.md, starter_v0/artifacts/REPORT.md - |
+| Nguyễn Công Duẩn | [2A202602716] | duanhap | Trưởng nhóm; tạo repo, phân công công việc, chốt workflow, kiểm tra v0-v3, tạo transcript, tổng hợp report và final signoff | repo chung, TEAM.md, starter_v0/artifacts/REPORT.md - commit 2e1b18a |
 | Phùng Quốc Việt | [2A202602456] | PhungQuocViet |Kỹ sư Prompt Core: Khởi tạo repo/môi trường; tối ưu lặp `system_prompt.md` qua các phiên bản v0->v1->v2->v3 đạt 100% (30/30); thiết kế 10 test case nhóm `data/eval_group.json`; quản lý nhật ký `version_log.csv` và điều phối tích hợp git | `artifacts/system_prompt.md`<br>`data/eval_group.json`<br>`artifacts/version_log.csv`<br>`runs/v0_...` đến `v3_...`<br>Commits: v1, v2-v3, 10 testcase gr |
 | Phan Hoàng Vũ | [2A202602450]  | hoangvu180225-cell | Phần UI/chat/transcript: chạy và kiểm tra giao diện, lưu hội thoại, đối chiếu behavior thật với run | starter_v0/README.md,static/app.css + app.js + index.html, ui.py - commit d7e8212 |
 
