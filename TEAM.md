@@ -53,7 +53,11 @@ Sao chép mục này cho từng thành viên.
 ### Phan Hoàng Vũ — [2A202602450]
 
 - Phần việc và file/commit/PR:
-- Quyết định, khó khăn và cách xử lý:
-- Điều đã học:
-- AI/công cụ đã dùng và cách kiểm tra:
-- Thời điểm đã tự nộp URL repo chung trên VLearn:
+  - Phụ trách hệ thống Web UI Chat & Transcript Visualizer đạt 10 điểm tiêu chí UI/Transcript Rubric.
+  - Thiết kế giao diện Web Chat (CSS/HTML/JS) và Python HTTP backend (`starter_v0/ui.py`) hỗ trợ cả Live LLM lẫn Simulator (Offline).
+  - Phát triển hiển thị trực quan Tool Calling (args JSON, cảnh báo lỗi Đỏ/Cam), thanh chọn phiên bản v0-v3 (hash SHA256), bộ testcase 1-click và nạp/lưu `.transcript.json`.
+  - File/Commit: `starter_v0/ui.py`, `static/index.html`, `static/app.css`, `static/app.js`, `starter_v0/README.md` (Commit: `d7e8212`).
+- Quyết định, khó khăn và cách xử lý: Dùng `ThreadingHTTPServer` thuần Python để tránh cài thêm thư viện; làm nổi bật cảnh báo lỗi thực thi/dữ liệu nhạy cảm thay vì che giấu; tích hợp Chế độ Simulator để demo/test nhanh offline khi chưa có API key.
+- Điều đã học: Hiểu sâu cơ chế hiển thị luồng Tool Calling, đồng bộ dữ liệu giữa Python backend và Web UI, cùng tư duy minh bạch hóa log/transcript phục vụ đánh giá agent.
+- AI/công cụ đã dùng và cách kiểm tra: Trợ lý AI hỗ trợ gợi ý code UI/server; tự kiểm tra bằng cách khởi chạy `python starter_v0/ui.py --port 8000`, chạy thử các testcase Base/Safety và đối chiếu file transcript sinh ra với `chat.py`.
+- Thời điểm đã tự nộp URL repo chung trên VLearn: [00:09 ngày 16/09/2026]
